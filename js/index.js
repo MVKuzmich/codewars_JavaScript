@@ -23,3 +23,26 @@ Complete the method that takes a boolean value and return a "Yes" string for tru
 function boolToWord( bool ) {
     return bool ? "Yes" : "No";
   }
+
+function highestRank(arr) {
+  let map = new Map();
+  for(let i = 0; i < arr.length; i++) {
+    if(map.get(arr[i])) {
+      map.set(arr[i], map.get(arr[i]) + 1);
+    } else {
+      map.set(arr[i], 1);
+    }
+  }
+
+  let sorted = [...map.entries()].sort((a, b) => {
+    if(b[1] > a[1]) {
+        return 1;
+    } else if (b[1] < a[1]) {
+        return -1;
+    } else {
+        return b[0] - a[0];
+    }
+  });
+  
+  return sorted[0][0];
+}
